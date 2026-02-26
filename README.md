@@ -1,18 +1,41 @@
 # json-outputs-from-edm4hep
 
-| Release    | edm4hepVersion | podioVersion |
-| ---------- | -------------- | ------------ |
-| 2023-11-23 | 0.10.2         | 0.17.3       |
-| 2024-03-10 | 0.10.5         | 0.99.0       |
-| 2024-04-12 | 0.10.5         | 0.99.0       |
-| 2024-10-03 | 0.99.1         | 1.1.0        |
-| 2024-10-28 | 0.99.1         | 1.1.0        |
-| 2024-11-28 | 0.99.1         | 1.1.0        |
-| 2025-01-28 | 0.99.1         | 1.1.0        |
-| 2025-05-29 | 0.99.2         | 1.3.0        |
-| 2026-02-01 | 1.0.0          | 1.7.0        |
-
 JSON outputs from all EDM4HEP releases, generated from (FCC Tutorials)[https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html]:
+
+## Table of EDM4HEP releases and their respective schema
+
+| Release        | edm4hepVersion | schemaVersion |
+| -------------- | -------------- | ------------- |
+| **2023-11-23** | 0.10.2         | 1             |
+| **2024-03-10** | 0.10.5         | 1             |
+| **2024-04-12** | 0.10.5         | 1             |
+| **2024-10-03** | 0.99.1         | 2             |
+| **2024-10-28** | 0.99.1         | 2             |
+| **2024-11-28** | 0.99.1         | 2             |
+| **2025-01-28** | 0.99.1         | 2             |
+| **2025-05-29** | 0.99.2         | 3             |
+| **2026-02-01** | 1.0.0          | 6             |
+
+## Table of EDM4HEP versions and their respective schema
+
+| edm4hepVersion | schemaVersion |
+| -------------- | ------------- |
+| 0.9.0          | 1             |
+| 0.10.0         | 1             |
+| 0.10.1         | 1             |
+| 0.10.2         | 1             |
+| 0.10.3         | 1             |
+| 0.10.4         | 1             |
+| 0.10.5         | 1             |
+| 0.10.99        | 1             |
+| 0.99.0         | 2             |
+| 0.99.1         | 2             |
+| 0.99.2         | 3             |
+| ?              | 4             |
+| ?              | 5             |
+| 1.0.0          | 6             |
+
+## Event generation
 
 ```bash
 # e+ e- -> ZH -> Z and H to anything
