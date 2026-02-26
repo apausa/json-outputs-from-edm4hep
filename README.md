@@ -31,13 +31,11 @@ JSON outputs from all EDM4HEP releases, generated from (FCC Tutorials)[https://h
 | 0.99.0         | 2             |
 | 0.99.1         | 2             |
 | 0.99.2         | 3             |
-| ?              | 4             |
-| ?              | 5             |
 | 1.0.0          | 6             |
 
 ## File generation
 
-Setup a FCC software stack release
+1.0. Setup a FCC software stack release
 
 ```bash
 # source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2023-11-23
@@ -51,7 +49,7 @@ Setup a FCC software stack release
 source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2026-02-01
 ```
 
-### 2. Event simulation
+### Event simulation
 
 From (FCC: Getting started with simulating events in Delphes)[https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html].
 
@@ -97,8 +95,6 @@ From (FCC-ee Full Sim General Overview)[https://hep-fcc.github.io/fcc-tutorials/
 3.1. Clone repo
 
 ```bash
-git clone https://github.com/HEP-FCC/fcc-tutorials
-
 git clone https://github.com/key4hep/CLDConfig.git
 cd CLDConfig/CLDConfig
 ```
@@ -124,7 +120,7 @@ k4run CLDReconstruction.py --inputFiles wzp6_ee_mumuH_ecm240_CLD_SIM.root --outp
 
 ```
 
-3.5. Convert the first 20 events from root files to json
+3.5. Convert from root files to json
 
 ```bash
 edm4hep2json wzp6_ee_mumuH_ecm240_CLD_REC.edm4hep.root
