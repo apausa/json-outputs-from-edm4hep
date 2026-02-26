@@ -90,8 +90,6 @@ edm4hep2json -n 20 p8_ee_WW_ecm240_edm4hep.root
 
 From (FCC-ee Full Sim General Overview)[https://hep-fcc.github.io/fcc-tutorials/main/full-detector-simulations/FCCeeGeneralOverview/FCCeeGeneralOverview.html#towards-full-sim-physics-analyses-with-cld].
 
-# e⁺e⁻ → Z(μμ)H(inclusive)
-
 3.1. Clone repo
 
 ```bash
@@ -102,6 +100,8 @@ cd CLDConfig/CLDConfig
 3.2  Retrieve Z(mumu)H(X) MC generator events
 
 ```bash
+# e⁺e⁻ → Z(μμ)H(inclusive)
+
 wget https://fccsw.web.cern.ch/fccsw/tutorials/MIT2024/wzp6_ee_mumuH_ecm240_GEN.stdhep.gz
 gunzip wzp6_ee_mumuH_ecm240_GEN.stdhep.gz
 ```
