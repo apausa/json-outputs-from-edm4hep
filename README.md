@@ -1,6 +1,6 @@
 # json-outputs-from-edm4hep
 
-JSON outputs from all EDM4HEP releases, generated from (FCC Tutorials)[https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html]:
+JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html):
 
 ## Table of EDM4HEP releases and their respective schema
 
@@ -51,7 +51,7 @@ source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2026-02-01
 
 ### Event simulation
 
-From (FCC: Getting started with simulating events in Delphes)[https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html].
+From [FCC: Getting started with simulating events in Delphes](https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html).
 
 ```bash
 # e+ e- -> ZH -> Z and H to anything
@@ -88,7 +88,7 @@ edm4hep2json -n 20 p8_ee_WW_ecm240_edm4hep.root
 
 ### Full simulation
 
-From (FCC-ee Full Sim General Overview)[https://hep-fcc.github.io/fcc-tutorials/main/full-detector-simulations/FCCeeGeneralOverview/FCCeeGeneralOverview.html#towards-full-sim-physics-analyses-with-cld].
+From [FCC-ee Full Sim General Overview](https://hep-fcc.github.io/fcc-tutorials/main/full-detector-simulations/FCCeeGeneralOverview/FCCeeGeneralOverview.html#towards-full-sim-physics-analyses-with-cld).
 
 3.1. Clone repo
 
