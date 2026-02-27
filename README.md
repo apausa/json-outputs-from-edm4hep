@@ -126,3 +126,25 @@ k4run CLDReconstruction.py --inputFiles wzp6_ee_mumuH_ecm240_CLD_SIM.root --outp
 edm4hep2json wzp6_ee_mumuH_ecm240_CLD_REC.edm4hep.root
 edm4hep2json wzp6_ee_mumuH_ecm240_CLD_SIM.root
 ```
+
+## Differences between schema versions
+
+Types: `edm4hep::Vertex`, `edm4hep::Track`, `edm4hep::TrackerHit`, `edm4hep::SimTrackerHit`, `edm4hep::CalorimeterHit`, `edm4hep::SimCalorimeterHit`, `edm4hep::Cluster`, `edm4hep::ReconstructedParticleCollection`
+
+### Schema 6 and 3
+
+`edm4Hep::trackerhit`
+New type:
+
+```
+Types:
+- edm4hep::TrackerHit3D
+- edm4hep::TrackerHitPlane
+- edm4hep::SenseWireHit
+```
+
+`edm4hep::Cluster`:
+
+- float phi [rad] -> float iPhi [rad]
+
+### Schema 3 and 2
