@@ -1,0 +1,150 @@
+edm4hep::CovMatrix3f:
+  Description: "A generic 3 dimensional covariance matrix with values stored in lower triangular form"
+  Members:
+    - std::array<float, 6> values // the covariance matrix values
+
+edm4hep::CovMatrix4f:
+  Description: "A generic 4 dimensional covariance matrix with values stored in lower triangular form"
+  Members:
+    - std::array<float, 10> values // the covariance matrix values
+
+edm4hep::Vector3f:
+  Members:
+    - float x
+    - float y
+    - float z
+
+edm4hep::Vector2f:
+  Members:
+    - float a
+    - float b
+
+edm4hep::Vector3d:
+  Members:
+    - double x
+    - double y
+    - double z
+
+edm4hep::Vertex:
+  Description: "Vertex"
+  Author: "F.Gaede, DESY"
+  Members:
+    - int32_t                 primary       //boolean flag, if vertex is the primary vertex of the event
+    - float               chi2          //chi-squared of the vertex fit
+    - float               probability   //probability of the vertex fit
+    - edm4hep::Vector3f   position      // [mm] position of the vertex.
+    - std::array<float,6> covMatrix     //covariance matrix of the position (stored as lower triangle matrix, i.e. cov(xx),cov(y,x),cov(z,x),cov(y,y),... )
+    - int32_t                 algorithmType //type code for the algorithm that has been used to create the vertex - check/set the collection parameters AlgorithmName and AlgorithmType.
+  VectorMembers:
+    - float               parameters    //additional parameters related to this vertex - check/set the collection parameter "VertexParameterNames" for the parameters meaning.
+  OneToOneRelations:
+    - edm4hep::ReconstructedParticle associatedParticle //reconstructed particle associated to this vertex.
+
+edm4hep::Track:
+  Description: "Reconstructed track"
+  Author: "F.Gaede, DESY"
+  Members:
+    - int32_t type                         //flagword that defines the type of track.Bits 16-31 are used internally
+    - float chi2                       //Chi^2 of the track fit
+    - int32_t ndf                          //number of degrees of freedom of the track fit
+    - float dEdx                       //dEdx of the track.
+    - float dEdxError                  //error of dEdx.
+    - float radiusOfInnermostHit       //radius of the innermost hit that has been used in the track fit
+  VectorMembers:
+    - int32_t subdetectorHitNumbers        //number of hits in particular subdetectors.Check/set collection variable TrackSubdetectorNames for decoding the indices
+    - edm4hep::TrackState trackStates  //track states
+    - edm4hep::Quantity dxQuantities // different measurements of dx quantities
+  OneToManyRelations:
+    - edm4hep::TrackerHit trackerHits  //hits that have been used to create this track
+    - edm4hep::Track tracks            //tracks (segments) that have been combined to create this track
+
+edm4hep::TrackerHit:
+  Description: "Tracker hit"
+  Author: "F.Gaede, DESY"
+  Members:
+    - uint64_t cellID      //ID of the sensor that created this hit
+    - int32_t type                       //type of raw data hit, either one of edm4hep::RawTimeSeries, edm4hep::SIMTRACKERHIT - see collection parameters "TrackerHitTypeNames" and "TrackerHitTypeValues".
+    - int32_t quality                    //quality bit flag of the hit.
+    - float time                     //time of the hit [ns].
+    - float eDep                     //energy deposited on the hit [GeV].
+    - float eDepError                //error measured on EDep [GeV].
+    - edm4hep::Vector3d position     //hit position in [mm].
+    - std::array<float,6> covMatrix  //covariance of the position (x,y,z), stored as lower triangle matrix. i.e. cov(x,x) , cov(y,x) , cov(y,y) , cov(z,x) , cov(z,y) , cov(z,z)
+  VectorMembers:
+    - edm4hep::ObjectID  rawHits     //raw data hits. Check getType to get actual data type.
+
+edm4hep::SimTrackerHit:
+  Description: "Simulated tracker hit"
+  Author: "F.Gaede, DESY"
+  Members:
+    - uint64_t cellID      //ID of the sensor that created this hit
+    - float EDep                     //energy deposited in the hit [GeV].
+    - float time                     //proper time of the hit in the lab frame in [ns].
+    - float pathLength               //path length of the particle in the sensitive material that resulted in this hit.
+    - int32_t   quality                  //quality bit flag.
+    - edm4hep::Vector3d position     //the hit position in [mm].
+    - edm4hep::Vector3f momentum     //the 3-momentum of the particle at the hits position in [GeV]
+  OneToOneRelations:
+    - edm4hep::MCParticle MCParticle //MCParticle that caused the hit.
+
+edm4hep::CalorimeterHit:
+  Description: "Calorimeter hit"
+  Author: "F.Gaede, DESY"
+  Members:
+    - uint64_t cellID  //detector specific (geometrical) cell id.
+    - float energy               //energy of the hit in [GeV].
+    - float energyError          //error of the hit energy in [GeV].
+    - float time                 //time of the hit in [ns].
+    - edm4hep::Vector3f position //position of the hit in world coordinates in [mm].
+    - int32_t type                   //type of hit. Mapping of integer types to names via collection parameters "CalorimeterHitTypeNames" and "CalorimeterHitTypeValues".
+
+edm4hep::SimCalorimeterHit:
+  Description: "Simulated calorimeter hit"
+  Author: "F.Gaede, DESY"
+  Members:
+    - uint64_t cellID       //ID of the sensor that created this hit
+    - float energy                    //energy of the hit in [GeV].
+    - edm4hep::Vector3f position      //position of the hit in world coordinates in [mm].
+  OneToManyRelations:
+    - edm4hep::CaloHitContribution contributions  //Monte Carlo step contribution - parallel to particle
+
+edm4hep::Cluster:
+  Description: "Calorimeter Hit Cluster"
+  Author: "F.Gaede, DESY"
+  Members:
+    - int32_t                  type            //flagword that defines the type of cluster. Bits 16-31 are used internally.
+    - float                energy          //energy of the cluster [GeV]
+    - float                energyError     //error on the energy
+    - edm4hep::Vector3f    position        //position of the cluster [mm]
+    - std::array<float,6>  positionError   //covariance matrix of the position (6 Parameters)
+    - float                iTheta          //intrinsic direction of cluster at position  Theta. Not to be confused with direction cluster is seen from IP.
+    - float                phi             //intrinsic direction of cluster at position - Phi. Not to be confused with direction cluster is seen from IP.
+    - edm4hep::Vector3f    directionError  //covariance matrix of the direction (3 Parameters) [mm^2]
+  VectorMembers:
+    - float   shapeParameters      //shape parameters - check/set collection parameter ClusterShapeParameters for size and names of parameters.
+    - float   subdetectorEnergies  //energy observed in a particular subdetector. Check/set collection parameter ClusterSubdetectorNames for decoding the indices of the array.
+  OneToManyRelations:
+    - edm4hep::Cluster        clusters     //clusters that have been combined to this cluster.
+    - edm4hep::CalorimeterHit hits         //hits that have been combined to this cluster.
+    - edm4hep::ParticleID     particleIDs  //particle IDs (sorted by their likelihood)
+
+edm4hep::ReconstructedParticle:
+  Description: "Reconstructed Particle"
+  Author: "F.Gaede, DESY"
+  Members:
+    - int32_t                    type           //type of reconstructed particle. Check/set collection parameters ReconstructedParticleTypeNames and ReconstructedParticleTypeValues.
+    - float                  energy         // [GeV] energy of the reconstructed particle. Four momentum state is not kept consistent internally.
+    - edm4hep::Vector3f      momentum       // [GeV] particle momentum. Four momentum state is not kept consistent internally.
+    - edm4hep::Vector3f      referencePoint // [mm] reference, i.e. where the particle has been measured
+    - float                  charge         //charge of the reconstructed particle.
+    - float                  mass           // [GeV] mass of the reconstructed particle, set independently from four vector. Four momentum state is not kept consistent internally.
+    - float                  goodnessOfPID  //overall goodness of the PID on a scale of [0;1]
+    - std::array<float,10>   covMatrix      //cvariance matrix of the reconstructed particle 4vector (10 parameters). Stored as lower triangle matrix of the four momentum (px,py,pz,E), i.e. cov(px,px), cov(py,##
+  OneToOneRelations:
+    - edm4hep::Vertex          startVertex    //start vertex associated to this particle
+    - edm4hep::ParticleID      particleIDUsed //particle Id used for the kinematics of this particle
+  OneToManyRelations:
+    - edm4hep::Cluster               clusters     //clusters that have been used for this particle.
+    - edm4hep::Track                 tracks       //tracks that have been used for this particle.
+    - edm4hep::ReconstructedParticle particles    //reconstructed particles that have been combined to this particle.
+    - edm4hep::ParticleID            particleIDs  //particle Ids (not sorted by their likelihood)
