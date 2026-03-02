@@ -1,3 +1,12 @@
+edm4hep::ObjectID:
+  - int collectionID
+  - int index
+
+edm4hep::Quantity:
+  - int error
+  - int type
+  - int value
+
 edm4hep::CovMatrix3f:
   Description: "A generic 3 dimensional covariance matrix with values stored in lower triangular form"
   Members:
@@ -25,44 +34,57 @@ edm4hep::Vector3d:
     - double y
     - double z
 
+edm4hep::TrackState:
+  Description: "Parametrized description of a particle track"
+  Members:
+    - int location // for use with At{Other|IP|FirstHit|LastHit|Calorimeter|Vertex}|LastLocation
+    - float D0 // transverse impact parameter
+    - float phi [rad] // azimuthal angle of the track at this location (i.e. not phi0)
+    - float omega [1/mm] // is the signed curvature of the track
+    - float Z0 // longitudinal impact parameter
+    - float tanLambda // lambda is the dip angle of the track in r-z
+    - float time [ns] // time of the track at this trackstate
+    - edm4hep::Vector3f referencePoint [mm] // Reference point of the track parameters, e.g. the origin at the IP, or the position  of the first/last hits or the entry point into the calorimeter
+    - edm4hep::CovMatrix6f covMatrix // covariance matrix of the track parameters.
+
 edm4hep::Vertex:
   Description: "Vertex"
   Author: "EDM4hep authors"
   Members:
-    - uint32_t            type          // flagword that defines the type of the vertex, see reserved bits for more information
+    - int            type          // flagword that defines the type of the vertex, see reserved bits for more information
     - float               chi2          // chi-squared of the vertex fit
-    - int32_t             ndf           // number of degrees of freedom of the vertex fit
+    - int             ndf           // number of degrees of freedom of the vertex fit
     - edm4hep::Vector3f   position [mm]     //  position of the vertex
     - edm4hep::CovMatrix3f covMatrix [mm^2]  // covariance matrix of the position
-    - int32_t                 algorithmType // type code for the algorithm that has been used to create the vertex
+    - int                 algorithmType // type code for the algorithm that has been used to create the vertex
   VectorMembers:
     - float               parameters    // additional parameters related to this vertex
   OneToManyRelations:
-    - edm4hep::ReconstructedParticle particles // particles that have been used to form this vertex, aka the decay particles emerging from this vertex
+    - edm4hep::ObjectID particles // particles that have been used to form this vertex, aka the decay particles emerging from this vertex
 
 edm4hep::Track:
   Description: "Reconstructed track"
   Author: "EDM4hep authors"
   Members:
-    - int32_t type                         // flagword that defines the type of track
+    - int type                         // flagword that defines the type of track
     - float chi2                       // chi-squared of the track fit
-    - int32_t ndf                          // number of degrees of freedom of the track fit
-    - int32_t Nholes                   // number of holes on track
+    - int ndf                          // number of degrees of freedom of the track fit
+    - int Nholes                   // number of holes on track
   VectorMembers:
-    - int32_t subdetectorHitNumbers        // number of hits in particular subdetectors
-    - int32_t subdetectorHoleNumbers       // number of holes in particular subdetectors
+    - int subdetectorHitNumbers        // number of hits in particular subdetectors
+    - int subdetectorHoleNumbers       // number of holes in particular subdetectors
     - edm4hep::TrackState trackStates  // track states
   OneToManyRelations:
-    - edm4hep::TrackerHit trackerHits  // hits that have been used to create this track
-    - edm4hep::Track tracks            // tracks (segments) that have been combined to create this track
+    - edm4hep::ObjectID trackerHits  // hits that have been used to create this track
+    - edm4hep::ObjectID tracks            // tracks (segments) that have been combined to create this track
 
 edm4hep::TrackerHit:
   Description: "Tracker hit interface class"
   Author: "Thomas Madlener, DESY"
   Members:
-    - uint64_t cellID // ID of the sensor that created this hit
-    - int32_t type // type of the raw data hit
-    - int32_t quality // quality bit flag of the hit
+    - int cellID // ID of the sensor that created this hit
+    - int type // type of the raw data hit
+    - int quality // quality bit flag of the hit
     - float time [ns] // time of the hit
     - float eDep [GeV] // energy deposited on the hit
     - float eDepError [GeV] // error measured on eDep
@@ -76,9 +98,9 @@ edm4hep::TrackerHit3D:
   Description: "Tracker hit"
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID      // ID of the sensor that created this hit
-    - int32_t type                       // type of raw data hit
-    - int32_t quality                    // quality bit flag of the hit
+    - int cellID      // ID of the sensor that created this hit
+    - int type                       // type of raw data hit
+    - int quality                    // quality bit flag of the hit
     - float time [ns]                    // time of the hit
     - float eDep [GeV]                   // energy deposited on the hit
     - float eDepError [GeV]              // error measured on eDep
@@ -89,9 +111,9 @@ edm4hep::TrackerHitPlane:
   Description: "Tracker hit plane"
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID      // ID of the sensor that created this hit
-    - int32_t type                       // type of raw data hit
-    - int32_t quality                    // quality bit flag of the hit
+    - int cellID      // ID of the sensor that created this hit
+    - int type                       // type of raw data hit
+    - int quality                    // quality bit flag of the hit
     - float time [ns]                    // time of the hit
     - float eDep [GeV]                   // energy deposited on the hit
     - float eDepError [GeV]              // error measured on eDep
@@ -106,9 +128,9 @@ edm4hep::SenseWireHit:
   Description: "Sense wire hit, knowing only the distance to the wire. The circle representing possible positions is parametrized with its center, radius and normal vector (given by the wire direction)."
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID // ID of the sensor that created this hit
-    - int32_t type // type of the raw data hit
-    - int32_t quality // quality bit flag of the hit
+    - int cellID // ID of the sensor that created this hit
+    - int type // type of the raw data hit
+    - int quality // quality bit flag of the hit
     - float time [ns] // time of the hit
     - float eDep [GeV] // energy deposited by the hit
     - float eDepError [GeV] // error on eDep
@@ -119,48 +141,48 @@ edm4hep::SenseWireHit:
     - float distanceToWire [mm] // distance between the hit and the wire (radius of the circle)
     - float distanceToWireError [mm] // error on distanceToWire
   VectorMembers:
-    - uint16_t nElectrons // number of electrons for each cluster (number of clusters = vector size)
+    - int nElectrons // number of electrons for each cluster (number of clusters = vector size)
 
 edm4hep::SimTrackerHit:
   Description: "Simulated tracker hit"
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID      // ID of the sensor that created this hit
+    - int cellID      // ID of the sensor that created this hit
     - float eDep [GeV]               // energy deposited in the hit
     - float time [ns]                // proper time of the hit in the lab frame
     - float pathLength               // path length of the particle in the sensitive material that resulted in this hit
-    - int32_t   quality                  // quality bit flag
+    - int   quality                  // quality bit flag
     - edm4hep::Vector3d position [mm] // the hit position
     - edm4hep::Vector3f momentum [GeV] // the 3-momentum of the particle at the hits position
   OneToOneRelations:
-    - edm4hep::MCParticle particle // MCParticle that caused the hit
+    - edm4hep::ObjectID particle // MCParticle that caused the hit
 
 edm4hep::CalorimeterHit:
   Description: "Calorimeter hit"
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID  // detector specific (geometrical) cell id
+    - int cellID  // detector specific (geometrical) cell id
     - float energy [GeV]              // energy of the hit
     - float energyError [GeV]         // error of the hit energy
     - float time [ns]                // time of the hit
     - edm4hep::Vector3f position [mm] // position of the hit in world coordinates
-    - int32_t type                   // type of hit
+    - int type                   // type of hit
 
 edm4hep::SimCalorimeterHit:
   Description: "Simulated calorimeter hit"
   Author: "EDM4hep authors"
   Members:
-    - uint64_t cellID       // ID of the sensor that created this hit
+    - int cellID       // ID of the sensor that created this hit
     - float energy [GeV]                   // energy of the hit
     - edm4hep::Vector3f position [mm]      // position of the hit in world coordinates
   OneToManyRelations:
-    - edm4hep::CaloHitContribution contributions  // Monte Carlo step contributions
+    - edm4hep::ObjectID contributions  // Monte Carlo step contributions
 
 edm4hep::Cluster:
   Description: "Calorimeter Hit Cluster"
   Author: "EDM4hep authors"
   Members:
-    - int32_t                  type            // flagword that defines the type of cluster
+    - int                  type            // flagword that defines the type of cluster
     - float                energy [GeV]        // energy of the cluster
     - float                energyError [GeV]   // error on the energy
     - edm4hep::Vector3f    position [mm]       // position of the cluster
@@ -172,14 +194,14 @@ edm4hep::Cluster:
     - float   shapeParameters      // shape parameters. The corresponding names of the shape parameters should be stored in the collection named by edm4hep::labels::ShapeParameterNames in the file-level metadata, as a vector of strings in the same order as the parameters.
     - float   subdetectorEnergies  // energy observed in a particular subdetector
   OneToManyRelations:
-    - edm4hep::Cluster        clusters     // clusters that have been combined to this cluster
-    - edm4hep::CalorimeterHit hits         // hits that have been combined to this cluster
+    - edm4hep::ObjectID        clusters     // clusters that have been combined to this cluster
+    - edm4hep::ObjectID hits         // hits that have been combined to this cluster
 
 edm4hep::ReconstructedParticle:
   Description: "Reconstructed Particle"
   Author: "EDM4hep authors"
   Members:
-    - int32_t                PDG            // PDG of the reconstructed particle.
+    - int                PDG            // PDG of the reconstructed particle.
     - float                  energy [GeV]    // energy of the reconstructed particle. Four momentum state is not kept consistent internally
     - edm4hep::Vector3f      momentum [GeV]  //  particle momentum. Four momentum state is not kept consistent internally
     - edm4hep::Vector3f      referencePoint [mm] // reference, i.e. where the particle has been measured
@@ -188,8 +210,8 @@ edm4hep::ReconstructedParticle:
     - float                  goodnessOfPID  // overall goodness of the PID on a scale of [0;1]
     - edm4hep::CovMatrix4f   covMatrix  [GeV^2]    // covariance matrix of the reconstructed particle 4vector
   OneToOneRelations:
-    - edm4hep::Vertex          decayVertex    // decay vertex for the particle (if it is a composite particle)
+    - edm4hep::ObjectID          decayVertex    // decay vertex for the particle (if it is a composite particle)
   OneToManyRelations:
-    - edm4hep::Cluster               clusters     // clusters that have been used for this particle
-    - edm4hep::Track                 tracks       // tracks that have been used for this particle
-    - edm4hep::ReconstructedParticle particles    // reconstructed particles that have been combined to this particle
+    - edm4hep::ObjectID               clusters     // clusters that have been used for this particle
+    - edm4hep::ObjectID                 tracks       // tracks that have been used for this particle
+    - edm4hep::ObjectID particles    // reconstructed particles that have been combined to this particle
