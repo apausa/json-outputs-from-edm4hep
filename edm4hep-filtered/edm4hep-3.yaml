@@ -7,6 +7,11 @@ edm4hep::Quantity:
   - int type
   - int value
 
+edm4hep::CovMatrix6f:
+  - Description: "A generic 6 dimensional covariance matrix with values stored in lower triangular form"
+  - Members:
+      - std::array<float, 21> values // the covariance matrix values
+
 edm4hep::CovMatrix3f:
   Description: "A generic 3 dimensional covariance matrix with values stored in lower triangular form"
   Members:

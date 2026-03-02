@@ -7,6 +7,11 @@ edm4hep::Quantity:
   - int type
   - int value
 
+edm4hep::CovMatrix6f:
+  - Description: "A generic 6 dimensional covariance matrix with values stored in lower triangular form"
+  - Members:
+      - std::array<float, 21> values // the covariance matrix values
+
 edm4hep::CovMatrix3f:
   Description: "A generic 3 dimensional covariance matrix with values stored in lower triangular form"
   Members:
@@ -75,8 +80,8 @@ edm4hep::Track:
     - int subdetectorHoleNumbers       // number of holes in particular subdetectors
     - edm4hep::TrackState trackStates  // track states
   OneToManyRelations:
-    - edm4hep::TrackerHit trackerHits  // hits that have been used to create this track
-    - edm4hep::Track tracks            // tracks (segments) that have been combined to create this track
+    - edm4hep::ObjectID trackerHits  // hits that have been used to create this track
+    - edm4hep::ObjectID tracks            // tracks (segments) that have been combined to create this track
 
 edm4hep::TrackerHit:
   Description: "Tracker hit interface class"
