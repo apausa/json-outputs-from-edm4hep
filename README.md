@@ -4,34 +4,84 @@ JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://h
 
 ## Table of EDM4HEP releases and their respective schema
 
-| Release        | edm4hepVersion | schemaVersion |
-| -------------- | -------------- | ------------- |
-| **2023-11-23** | 0.10.2         | 1             |
-| **2024-03-10** | 0.10.5         | 1             |
-| **2024-04-12** | 0.10.5         | 1             |
-| **2024-10-03** | 0.99.1         | 2             |
-| **2024-10-28** | 0.99.1         | 2             |
-| **2024-11-28** | 0.99.1         | 2             |
-| **2025-01-28** | 0.99.1         | 2             |
-| **2025-05-29** | 0.99.2         | 3             |
-| **2026-02-01** | 1.0.0          | 6             |
+| Release        | edm4hep | schema |
+| -------------- | ------- | ------ |
+| **2023-11-23** | 0.10.2  | 1      |
+| **2024-03-10** | 0.10.5  | 1      |
+| **2024-04-12** | 0.10.5  | 1      |
+| **2024-10-03** | 0.99.1  | 2      |
+| **2024-10-28** | 0.99.1  | 2      |
+| **2024-11-28** | 0.99.1  | 2      |
+| **2025-01-28** | 0.99.1  | 2      |
+| **2025-05-29** | 0.99.2  | 3      |
+| **2026-02-01** | 1.0.0   | 6      |
 
-## Table of EDM4HEP versions and their respective schema
+### Nightly versions and their respective schema
 
-| edm4hepVersion | schemaVersion |
-| -------------- | ------------- |
-| 0.9.0          | 1             |
-| 0.10.0         | 1             |
-| 0.10.1         | 1             |
-| 0.10.2         | 1             |
-| 0.10.3         | 1             |
-| 0.10.4         | 1             |
-| 0.10.5         | 1             |
-| 0.10.99        | 1             |
-| 0.99.0         | 2             |
-| 0.99.1         | 2             |
-| 0.99.2         | 3             |
-| 1.0.0          | 6             |
+- edm4hep 0.9.0: schema 1
+- edm4hep 0.10.0: schema 1
+- edm4hep 0.10.1: schema 1
+- edm4hep 0.10.3: schema 1
+- edm4hep 0.10.4: schema 1
+- edm4hep 0.10.99: schema 1
+- edm4hep 0.99.0: schema 2
+
+## List of collection types and their respective names
+
+**edm4hep::CalorimeterHitCollection**
+
+- CalorimeterHits.
+
+**edm4hep::SimCalorimeterHitCollection**
+
+- ECalBarrelCollection
+- ECalEndcapCollection
+- HCalBarrelCollection
+- HCalEndcapCollection
+- HCalRingCollection
+- LumiCalCollection
+- YokeBarrelCollection
+- YokeEndcapCollection
+
+**edm4hep::ClusterCollection**
+
+- EFlowNeutralHadron
+- EFlowPhoton
+- EFlowNeutralHadron.
+
+**edm4hep::ReconstructedParticleCollection**
+
+- Electron
+- Jet
+- Muon
+- Photon
+- ReconstructedParticles
+
+**edm4hep::TrackerHit3DCollection**
+
+- TrackerHits.
+
+**edm4hep::SimTrackerHitCollection**
+
+- InnerTrackerBarrelCollection
+- InnerTrackerEndcapCollection
+- OuterTrackerBarrelCollection
+- OuterTrackerEndcapCollection
+- VertexBarrelCollection
+- VertexEndcapCollection
+
+**edm4hep::TrackCollection**
+
+- EFlowTrack
+
+**edm4hep::VertexCollection**
+
+- BuildUpVertices
+- BuildUpVertices_V0
+- PandoraStartVertices
+- PrimaryVertices
+- RefinedVertexJets_vtx
+- RefinedVertices.
 
 ## File generation
 
