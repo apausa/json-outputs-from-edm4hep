@@ -59,7 +59,7 @@ JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://h
 
 **edm4hep::TrackerHit3DCollection**
 
-- TrackerHits.
+- TrackerHits
 
 **edm4hep::SimTrackerHitCollection**
 
