@@ -15,6 +15,7 @@ JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://h
 | **2025-01-28** | 0.99.1  | 2      |
 | **2025-05-29** | 0.99.2  | 3      |
 | **2026-02-01** | 1.0.0   | 6      |
+| **2026-04-08** | 1.0.0   | 6      |
 
 ### Nightly versions and their respective schema
 
@@ -81,7 +82,7 @@ JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://h
 - PandoraStartVertices
 - PrimaryVertices
 - RefinedVertexJets_vtx
-- RefinedVertices.
+- RefinedVertices
 
 ## File generation
 
