@@ -84,7 +84,7 @@ JSON outputs from all EDM4HEP releases, generated from [FCC Tutorials](https://h
 - RefinedVertexJets_vtx
 - RefinedVertices
 
-## File generation
+### Source stack
 
 1.0. Setup a FCC software stack release
 
@@ -104,17 +104,16 @@ source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2026-02-01
 
 From [FCC: Getting started with simulating events in Delphes](https://hep-fcc.github.io/fcc-tutorials/main/fast-sim-and-analysis/k4simdelphes/doc/starterkit/FccFastSimDelphes/Readme.html).
 
-```bash
-# e+ e- -> ZH -> Z and H to anything
-# e+ e- -> ZZ -> Z to anything
-# e+ e- -> WW -> W to anything
-```
-
 2.1 Download official pythia cards for the various processes
 
 ```bash
+# e+ e- -> ZH -> Z and H to anything
 wget https://raw.githubusercontent.com/HEP-FCC/FCC-config/winter2023/FCCee/Generator/Pythia8/p8_ee_ZH_ecm240.cmd
+
+# e+ e- -> ZZ -> Z to anything
 wget https://raw.githubusercontent.com/HEP-FCC/FCC-config/winter2023/FCCee/Generator/Pythia8/p8_ee_ZZ_ecm240.cmd
+
+# e+ e- -> WW -> W to anything
 wget https://raw.githubusercontent.com/HEP-FCC/FCC-config/winter2023/FCCee/Generator/Pythia8/p8_ee_WW_ecm240.cmd
 
 wget https://raw.githubusercontent.com/HEP-FCC/FCC-config/winter2023/FCCee/Delphes/card_IDEA.tcl
